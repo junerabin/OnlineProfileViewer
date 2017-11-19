@@ -1,0 +1,103 @@
+create database onlineprofile;
+
+use onlineprofile;
+
+CREATE TABLE Person (
+PersonId int NOT NULL AUTO_INCREMENT,
+FirstName VARCHAR(250) NOT NULL,
+LastName VARCHAR(250) NOT NULL,
+MiddleName VARCHAR(250),
+ContactNo VARCHAR(20) NOT NULL,
+Email VARCHAR(50) NOT NULL,
+Street1 VARCHAR(500) NOT NULL,
+Street2 VARCHAR(500),
+City VARCHAR(250) NOT NULL,
+State VARCHAR(250) NOT NULL,
+Country VARCHAR(250) NOT NULL,
+UserName VARCHAR(250) NOT NULL,
+Password VARCHAR(250) NOT NULL,
+Type VARCHAR(50) NOT NULL,
+ZipCode VARCHAR(50) NOT NULL,
+PRIMARY KEY (PersonId)
+);
+
+CREATE TABLE StandardTemplate(
+TemplateId int NOT NULL AUTO_INCREMENT,
+PersonId int NOT NULL,
+LinkedInURL VARCHAR(250) NULL,
+AppliedPosition VARCHAR(500) NOT NULL,
+AboutYourself VARCHAR(1000) NOT NULL,
+PhotoURL VARCHAR(500) NOT NULL,
+AttachmentURL VARCHAR(500) NULL,
+Status VARCHAR(50) NOT NULL,
+PRIMARY KEY (TemplateId)
+);
+
+CREATE TABLE WorkExperience (
+ExperienceId int NOT NULL AUTO_INCREMENT,
+PersonId int NOT NULL,
+Title VARCHAR(500) NOT NULL,
+Company VARCHAR(500) NOT NULL,
+Location VARCHAR(500) NOT NULL,
+FromDate DATE NOT NULL,
+ToDate DATE NULL,
+Description VARCHAR(1000) NOT NULL,
+IsCurrent VARCHAR(1) NULL,
+PRIMARY KEY (ExperienceId)
+);
+
+CREATE TABLE Education (
+EducationId int NOT NULL AUTO_INCREMENT,
+PersonId int NOT NULL,
+School VARCHAR(500) NOT NULL,
+Degree VARCHAR(500) NOT NULL,
+StudyField VARCHAR(500) NOT NULL,
+Grade VARCHAR(100) NOT NULL,
+Year int NOT NULL,
+PRIMARY KEY (EducationId)
+);
+
+CREATE TABLE Skills (
+PersonId int NOT NULL,
+Skill VARCHAR(100) NOT NULL,
+Level VARCHAR(100) NOT NULL,
+PRIMARY KEY(PersonId, Skill)
+);
+
+CREATE TABLE FeedBack (
+FeedBackId int NOT NULL AUTO_INCREMENT,
+PersonId int,
+FeedBackType VARCHAR(100) NOT NULL,
+Message VARCHAR(1000) NOT NULL,
+CreatedDate DATE NOT NULL,
+Name VARCHAR(100) NOT NULL,
+Email VARCHAR(100) NOT NULL,
+PRIMARY KEY(FeedBackId)
+);
+
+
+CREATE TABLE DynamicTemplate (
+DynamicId int NOT NULL AUTO_INCREMENT,
+FieldName VARCHAR(100) NOT NULL,
+InputType VARCHAR(100) NOT NULL,
+Description VARCHAR(100) NULL,
+LabelName VARCHAR(100) NOT NULL,
+IsActive VARCHAR(1) NOT NULL,
+PRIMARY KEY(DynamicId)
+);
+
+CREATE TABLE DynamicData (
+PersonId int NOT NULL,
+DynamicId int NOT NULL,
+Value VARCHAR(1000) NOT NULL,
+PRIMARY KEY(PersonId, DynamicId)
+);
+
+CREATE TABLE SpeakingLanguage (
+PersonId int NOT NULL,
+LanguageName VARCHAR(500) NOT NULL,
+Proficiency VARCHAR(100) NOT NULL,
+PRIMARY KEY(PersonId, LanguageName)
+);
+
+
